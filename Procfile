@@ -1,1 +1,1 @@
-web: gunicorn bradcode:app
+web: gunicorn coderunner:bradcode
