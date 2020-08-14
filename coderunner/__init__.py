@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 coderunner = Flask(__name__)
@@ -6,7 +6,7 @@ coderunner = Flask(__name__)
 
 #config class
 import os
-basedir = os.path.curdir(__file__)
+basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     #Configuration for the database
         # if there is a database to connect, os.environ.get('DATABASE_URL')
@@ -30,3 +30,8 @@ class User(db.Model):
 @coderunner.route('/index')
 def main():
     return render_template("index.html")
+
+@coderunner.route('/upload', methods = ['POST'])
+def upload():
+    file = request.files['inputFile']
+    return file.filename
