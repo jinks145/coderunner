@@ -1,6 +1,13 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+
+
+#for debugging
+import sys
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
 coderunner = Flask(__name__)
 
 
@@ -27,11 +34,11 @@ class User(db.Model):
 
 #routes
 @coderunner.route('/')
-@coderunner.route('/index')
 def main():
+    coderunner.logger.info('Debug info: coderunner.logger.info')
     return render_template("index.html")
 
-@coderunner.route('/upload', methods = ['POST'])
+@coderunner.route('/upload', methods = ['GET'])
 def upload():
     file = request.files['inputFile']
     return file.filename
