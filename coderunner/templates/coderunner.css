@@ -1,0 +1,35 @@
+/* overall app theme */
+div App {
+    text-align: center;
+    background-color: rgb(206, 213, 223);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+  }
+   /* card theme */
+  div Card {
+    background-color: white;
+    padding: 32px;
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+  }
+/* for file drag & drop */
+  div upload {
+    height: 200px;
+    width: 200px;
+    background-color: #fff;
+    border: 2px dashed rgb(187, 186, 186);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 16px;
+  }
