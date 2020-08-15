@@ -25,12 +25,21 @@ class Config(object):
 
 
 coderunner.config.from_object(Config)
+#databases
 db = SQLAlchemy(coderunner)
+# for the migrations
+migrate = Migrate(coderunner, db)
 
+# Models
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     
+class FileContents(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(64), index=True)
+    data = db.Column(db.LargeBinary)
+
 
 #routes
 @coderunner.route('/')

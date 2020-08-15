@@ -21,7 +21,7 @@ div App {
     box-sizing: border-box;
   }
 /* for file drag & drop */
-  div submit-button {
+  div upload {
     height: 200px;
     width: 200px;
     background-color: #fff;
