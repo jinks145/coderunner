@@ -6,7 +6,7 @@ coderunner = Flask(__name__)
 
 #config class
 import os
-basedir = os.path.curdir(__file__)
+basedir = basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     #Configuration for the database
         # if there is a database to connect, os.environ.get('DATABASE_URL')
