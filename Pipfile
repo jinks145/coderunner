@@ -8,6 +8,9 @@ verify_ssl = true
 [packages]
 flask = "*"
 gunicorn = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.8"
