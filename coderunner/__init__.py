@@ -23,9 +23,9 @@ class Config(object):
         # to turn off the unwanted notification
         SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy(app)
+
+coderunner.config.from_object(Config)
+db = SQLAlchemy(coderunner)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
