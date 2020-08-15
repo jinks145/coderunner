@@ -10,6 +10,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 coderunner = Flask(__name__)
 
+#for running subprocess to compile to emscriptenjs
+
+import subprocess
 
 #config class
 import os
@@ -47,7 +50,24 @@ def main():
     coderunner.logger.info('Debug info: coderunner.logger.info')
     return render_template("index.html")
 
-@coderunner.route('/upload', methods = ['GET'])
+@coderunner.route('/upload', methods = ['POST'])
 def upload():
     file = request.files['inputFile']
-    return file.filename
+    # converts the input to the record
+    newFile = FileContents(filename=file.filename, data= file.read())
+    db.session.add(newFile)
+    db.session.commit()
+    return 'Uploaded ' + file.filename
+
+
+
+#Comile classes
+def compileRun():
+    files = FileContents.query.all()
+    with open('coderunner/fileStorage/runner.cpp', 'wb') as file:
+        file.write(files[-1].data)
+    # the cpp file is tranformed into a runnable js code
+    subprocess.call(['emcc', 'coderunner/fileStorage/test.cpp', '-o', 'coderunner/scripts/test.js'])
+
+#TODO: display the results
+    
