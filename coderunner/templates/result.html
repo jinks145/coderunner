@@ -1,0 +1,20 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <p>Code Runtime for for ${file.filename}:</p>
+        <p>runtime is ${runtime}</p>
+
+        <code>${file.data}</code>
+        <script>
+            performance.mark('start');
+          </script>
+        <script src='coderunner/scripts/test.js'></script>        
+        <script>
+            performance.mark('end');
+            performance.measure('total', 'start', 'end');
+        </script>
+        
+    </body>
+</html>

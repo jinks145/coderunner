@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 #for debugging
 import sys
 import logging
+import time
 logging.basicConfig(level=logging.DEBUG)
 
 coderunner = Flask(__name__)
@@ -25,6 +26,7 @@ class Config(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
         # to turn off the unwanted notification
         SQLALCHEMY_TRACK_MODIFICATIONS = False
+        SECRET_KEY = "b'\xae\xfe<\xf63.\xdam\xf6l\x05\x93]\xbd\xffb=\xc1\xb6u\xc7}(\x13'"
 
 
 coderunner.config.from_object(Config)
@@ -52,22 +54,30 @@ def main():
 
 @coderunner.route('/upload', methods = ['POST'])
 def upload():
-    file = request.files['inputFile']
-    # converts the input to the record
-    newFile = FileContents(filename=file.filename, data= file.read())
-    db.session.add(newFile)
-    db.session.commit()
-    return 'Uploaded ' + file.filename
+    if request.method == 'POST':
+        file = request.files['inputFile']
+        # converts the input to the record
+        newFile = FileContents(filename=file.filename, data= file.read())
+        db.session.add(newFile)
+        db.session.commit()
+        flash('uploaded and running')
+        return redirect('/result')
+    else:
+        return render_template('upload.html')
 
 
 
-#Comile classes
+#Comile classes and display result
+@coderunner.route('/result', methods = ['GET'])
 def compileRun():
     files = FileContents.query.all()
     with open('coderunner/fileStorage/runner.cpp', 'wb') as file:
         file.write(files[-1].data)
     # the cpp file is tranformed into a runnable js code
-    subprocess.call(['emcc', 'coderunner/fileStorage/test.cpp', '-o', 'coderunner/scripts/test.js'])
+    start = time.time()
+    subprocess.call(['emcc', 'coderunner/fileStorage/runner.cpp', '-o', 'coderunner/scripts/test.js'])
+    end = time.time()
+    return render_template('result.html', file= files[-1], runtime= '{} seconds'.format(start - end))
 
 #TODO: display the results
     
