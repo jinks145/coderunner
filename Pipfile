@@ -8,14 +8,8 @@ verify_ssl = true
 [packages]
 flask = "*"
 gunicorn = "*"
-<<<<<<< HEAD
-flask-sqlalchemy = "*"
-flask-migrate = "*"
-python-dotenv = "*"
-=======
 flask-migrate = "*"
 flask-sqlalchemy = "*"
->>>>>>> fileupload
 
 [requires]
 python_version = "3.8"
