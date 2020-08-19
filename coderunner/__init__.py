@@ -76,9 +76,13 @@ def compileRun():
         file.write(files[-1].data)
     # the cpp file is copied into a container
     # client = docker.from_env()
+    
+    subprocess.run(['docker', 'build', '-t', 'cis22acontainer', '.'])
     start = time.time()
-    subprocess.run(['docker','run','--rm','668f75efe059' ])
+    subprocess.run(['docker','run','--rm','cis22acontainer' ])
     end = time.time()
+    subprocess.run(['docker', 'rmi', 'cis22acontainer'])
+    
     return render_template('result.html',filename= files[-1].filename,filecontents= files[-1].data.decode('ascii'), runtime= '%3.2f seconds' % (end - start))
 
 #TODO: display the results
