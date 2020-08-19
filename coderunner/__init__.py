@@ -66,7 +66,7 @@ def upload():
         return render_template('upload.html')
 
 
-import docker
+
 #Comile classes and display result
 @coderunner.route('/result', methods = ['GET'])
 def compileRun():
