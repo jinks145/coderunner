@@ -20,7 +20,13 @@
         <div class ="input-group">
           <label for = "inputFile">.cpp upload</label>
           <input type="file" name = "inputFile">
-          <button type = "submit" class= "submit-button">
+          <button class="submit1">Run</button>
+          <script>
+            const run = document.querySelector('submit1');
+            document.addEventListener('onclick', ()=>{
+              alert('running')
+            })
+          </script>
         </div>
           
       </form>
