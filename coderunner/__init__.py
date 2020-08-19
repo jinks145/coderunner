@@ -76,8 +76,9 @@ def compileRun():
     # the cpp file is tranformed into a runnable js code
     start = time.time()
     subprocess.call(['emcc', 'coderunner/fileStorage/runner.cpp', '-o', 'coderunner/scripts/test.js'])
+    subprocess.call(['node', 'coderunner/scripts/test.js'])
     end = time.time()
-    return render_template('result.html', file= files[-1], runtime= '{} seconds'.format(start - end))
+    return render_template('result.html', file= files[-1], runtime= '{} seconds'.format(end - start))
 
 #TODO: display the results
     
