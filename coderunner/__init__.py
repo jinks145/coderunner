@@ -66,19 +66,20 @@ def upload():
         return render_template('upload.html')
 
 
-
+import docker
 #Comile classes and display result
 @coderunner.route('/result', methods = ['GET'])
 def compileRun():
     files = FileContents.query.all()
+    
     with open('coderunner/fileStorage/runner.cpp', 'wb') as file:
         file.write(files[-1].data)
-    # the cpp file is tranformed into a runnable js code
+    # the cpp file is copied into a container
+    # client = docker.from_env()
     start = time.time()
-    subprocess.call(['emcc', 'coderunner/fileStorage/runner.cpp', '-o', 'coderunner/scripts/test.js'])
-    subprocess.call(['node', 'coderunner/scripts/test.js'])
+    subprocess.run(['docker','run','--rm','668f75efe059' ])
     end = time.time()
-    return render_template('result.html', file= files[-1], runtime= '{} seconds'.format(end - start))
+    return render_template('result.html',filename= files[-1].filename,filecontents= files[-1].data.decode('ascii'), runtime= '%3.2f seconds' % (end - start))
 
 #TODO: display the results
     

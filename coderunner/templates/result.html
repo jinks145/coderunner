@@ -1,12 +1,14 @@
 <html>
     <head>
-        
+        <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
     </head>
     <body>
-        <p>Code Runtime for for {{file.filename}}:</p>
+        <p>Code Runtime for {{filename}}:</p>
         <p>runtime is {{runtime}}</p>
 
-        <code>{{file.data}}</code>
-        
+        <pre ><code class="cpp">{{filecontents}}</code></pre>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </body>
 </html>
