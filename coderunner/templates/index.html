@@ -2,10 +2,10 @@
 <html>
   <head lang="en">
     <meta charset="UTF-8">
-    <title>Flask React</title>
+    <title>Code Runner</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- styles -->
-    <link rel="stylesheet" href="./static/coderunner.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
   <body>
     <div class="Card">
@@ -14,16 +14,16 @@
         <p>Upload your file below to run your code</p>
     </div>
     <!-- scripts -->
-    <div class = "upload">
+    <div class = "container">
       
       <form class= "file-upload" method = "POST" action = "/upload" enctype = "multipart/form-data">
         <div class ="input-group">
           <label for = "inputFile">.cpp upload</label>
           <input type="file" name = "inputFile">
-          <button class="submit1">Run</button>
+          <button class="btn btn-warning">Run</button>
           <script>
-            const run = document.querySelector('submit1');
-            document.addEventListener('onclick', ()=>{
+            const run = document.querySelector('.btn btn-warning');
+            run.addEventListener('click', ()=>{
               alert('running')
             })
           </script>

@@ -1,14 +1,21 @@
 <html>
     <head>
-        <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <body>
-        <p>Code Runtime for {{filename}}:</p>
-        <p>runtime is {{runtime}}</p>
-
-        <pre ><code class="cpp">{{filecontents}}</code></pre>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
+        <h1>Code Runtime for {{filename}}:</h1>
+        
+        
+        <div class='cardContainer'>
+            <div class= "card" style= 'width: 100rem;'>
+                <p>runtime is {{runtime}}</p>
+                <div class = 'card-body'>
+                <pre ><code class="cpp">{{filecontents}}</code></pre>
+                <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+                </div>
+            </card>
+        </div>
     </body>
 </html>
