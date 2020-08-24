@@ -1,7 +1,7 @@
 FROM frolvlad/alpine-gxx
 RUN mkdir src
 WORKDIR src
-COPY ./coderunner/fileStorage src
+COPY ./fileStorage src
 EXPOSE 3000
 RUN cd src && ls
 RUN apk add --no-cache g++

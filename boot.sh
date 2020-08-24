@@ -1,2 +1,3 @@
 #!/bin/bash
-pipenv run gunicorn --bind 0.0.0.0:5000 webapp.wsgi:app
+flask db upgrade
+exec gunicorn -b :5000 --access-logfile - --error-logfile - coderunner:coderunner
