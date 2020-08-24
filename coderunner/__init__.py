@@ -84,7 +84,7 @@ def compileRun():
     images = client.images.list()
     run_image = list(filter(lambda x : x  == 'cppcontainer' , images))
     if len(run_image) == 0 :
-        client.images.build(path='.', tag='cppcontainer')
+        client.images.build(path='./coderunner', tag='cppcontainer')
 
     start = time.time()
     client.containers.run(image='cppcontainer', remove=True)
