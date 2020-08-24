@@ -5,17 +5,19 @@
     </head>
     <body>
         <h1>Code Runtime for {{filename}}:</h1>
-        
+        <div class= 'card' style= 'width: 50px; height: 25px;'>
+            <a href="/" class= 'button btn-primary'>Home</a>
+        </div>
         
         <div class='cardContainer'>
-            <div class= "card" style= 'width: 100rem;'>
+            <div class= "card" style= 'width: 50rem; height: 50rem;'>
                 <p>runtime is {{runtime}}</p>
                 <div class = 'card-body'>
                 <pre ><code class="cpp">{{filecontents}}</code></pre>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
                 <script>hljs.initHighlightingOnLoad();</script>
-                </div>
-            </card>
+            </div>
+            </div>
         </div>
     </body>
 </html>
