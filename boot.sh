@@ -1,2 +1,2 @@
 #!/bin/bash
-exec gunicorn --bind 0.0.0.0:5000 webapp.wsgi:app
+pipenv run gunicorn --bind 0.0.0.0:5000 webapp.wsgi:app
