@@ -52,6 +52,9 @@ def main():
     coderunner.logger.info('Debug info: coderunner.logger.info')
     return render_template("index.html")
 
+
+
+
 @coderunner.route('/upload', methods = ['POST'])
 def upload():
     if request.method == 'POST':
@@ -65,7 +68,7 @@ def upload():
     else:
         return render_template('upload.html')
 
-
+import docker
 
 #Comile classes and display result
 @coderunner.route('/result', methods = ['GET'])
@@ -77,11 +80,16 @@ def compileRun():
     # the cpp file is copied into a container
     # client = docker.from_env()
     
-    subprocess.run(['docker', 'build', '-t', 'cis22acontainer', '.'])
+    client = docker.from_env()
+    images = client.images.list()
+    run_image = list(filter(lambda x : x  == 'cppcontainer' , images))
+    if len(run_image) == 0 :
+        client.images.build(path='.', tag='cppcontainer')
+
     start = time.time()
-    subprocess.run(['docker','run','--rm','cis22acontainer' ])
+    client.containers.run(image='cppcontainer', remove=True)
     end = time.time()
-    subprocess.run(['docker', 'rmi', 'cis22acontainer'])
+    
     
     return render_template('result.html',filename= files[-1].filename,filecontents= files[-1].data.decode('ascii'), runtime= '%3.2f seconds' % (end - start))
 
