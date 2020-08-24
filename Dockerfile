@@ -1,6 +1,6 @@
-FROM FROM python:3.6-alpine
+FROM python:3.8.5-slim-buster
 
-RUN adduser -D coderunner
+RUN adduser -disabled-password coderunner
 #set working dir
 WORKDIR home/experiment
 #copies coderunner source code from the original working dir
@@ -12,11 +12,17 @@ RUN pip install pipenv
 COPY Pipfile Pipfile
 COPY Pipfile.lock Pipfile.lock
 #run pipenv install to create a pipenv from the dependency
+RUN pipenv install flask
+RUN pipenv install gunicorn
 RUN pipenv install
-
+COPY boot.sh ./
 
 RUN chmod +x boot.sh
 
+ENV FLASK_APP coderunner.py
+
+RUN chown -R coderunner:coderunner ./
+USER coderunner
 
 
 
