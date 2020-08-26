@@ -1,7 +1,11 @@
-#problem:
- container
-#steps to replicate
-in my attempt to launch a container before deployment,
-I discovered that my packages from local env were installed
-but when I try to run them with boot.sh, the container throws an error:
-`./boot.sh: line 2: exec: gunicorn: not found`
+# Coderunner
+- A simple, crude web page demonstration of a sandboxed cpp code runtime using docker
+
+## Version:
+- Version 1.0
+
+## Capacity:
+    - Currently supports single-file cpp code
+
+## Future:
+    - Basis for an api server
