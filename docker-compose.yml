@@ -12,7 +12,7 @@ services:
     container_name: website
     depends_on:
       - sandbox
-
+    image: brad314/website
     
   sandbox:
     build: ./coderunner
