@@ -6,7 +6,6 @@ WORKDIR home/experiment
 #copies coderunner source code from the original working dir
 COPY coderunner coderunner
 COPY migrations migrations
-RUN install
 #install pipenv
 RUN pip install pipenv
 # install Pipfile and dependencies

@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  website:
+    build: ./ 
+    
+    volumes: 
+      - ./coderunner
+    
+    ports:
+      - 5000:80
+  
+  sandbox:
+    build: ./coderunner
+    
+      
