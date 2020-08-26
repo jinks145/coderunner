@@ -68,7 +68,7 @@ def upload():
     else:
         return render_template('upload.html')
 
-import docker
+import subprocess
 
 #Comile classes and display result
 @coderunner.route('/result', methods = ['GET'])
@@ -77,21 +77,15 @@ def compileRun():
     
     with open('coderunner/fileStorage/runner.cpp', 'wb') as file:
         file.write(files[-1].data)
-    # the cpp file is copied into a container
-    # client = docker.from_env()
     
-    client = docker.from_env()
-    images = client.images.list()
-    run_image = list(filter(lambda x : x  == 'cppcontainer' , images))
-    if len(run_image) == 0 :
-        client.images.build(path='./coderunner', tag='cppcontainer')
-
+    
     start = time.time()
-    client.containers.run(image='cppcontainer', remove=True)
+    output =subprocess.check_output(['docker-compose', 'run', 'sandbox']).decode("utf-8")
+    print(output)
     end = time.time()
     
     
-    return render_template('result.html',filename= files[-1].filename,filecontents= files[-1].data.decode('ascii'), runtime= '%3.2f seconds' % (end - start))
+    return render_template('result.html',filename= files[-1].filename,filecontents= files[-1].data.decode('ascii'), runtime= '%3.2f seconds' % (end - start), output=output)
 
 #TODO: display the results
     

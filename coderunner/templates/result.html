@@ -9,15 +9,26 @@
             <a href="/" class= 'button btn-primary'>Home</a>
         </div>
         
-        <div class='cardContainer'>
-            <div class= "card" style= 'width: 50rem; height: 50rem;'>
+        <div class='cardContainer' style="display: flex;">
+            <div class= "card" style= 'width: 80%; height: 40%; background-color:cornflowerblue;'>
                 <p>runtime is {{runtime}}</p>
                 <div class = 'card-body'>
-                <pre ><code class="cpp">{{filecontents}}</code></pre>
+                <pre ><code class="cpp" style= 'width: 60%; height: 50rem;'>{{filecontents}}</code></pre>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
                 <script>hljs.initHighlightingOnLoad();</script>
             </div>
+
+                
+                
+                <div class="card-body" style="background-color:black;color:white; font-family:'Courier New', Courier, monospace;">
+                    <h3>Output</h3>
+                    <p>{{output}}</p>
+                </div>
             </div>
+
+
         </div>
+
+
     </body>
 </html>
