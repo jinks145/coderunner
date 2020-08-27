@@ -1,0 +1,35 @@
+{   "AWSEBDockerrunVersion": 3,
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "image": "brad314/sandbox",
+            "name": "sandbox"
+        },
+        {
+            "essential": true,
+            "image": "brad314/website",
+            "mountPoints": [
+                {
+                    "containerPath": "./coderunner",
+                    "sourceVolume": "_Coderunner"
+                }
+            ],
+            "name": "website",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 5000
+                }
+            ]
+        }
+    ],
+    "family": "",
+    "volumes": [
+        {
+            "host": {
+                "sourcePath": "./coderunner"
+            },
+            "name": "_Coderunner"
+        }
+    ]
+}

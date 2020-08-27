@@ -13,10 +13,11 @@ services:
     depends_on:
       - sandbox
     image: brad314/website
-    
+    memory: 512
   sandbox:
     build: ./coderunner
     
     container_name: sandbox
-    
+    image: brad314/sandbox
+    memory: 512
       
