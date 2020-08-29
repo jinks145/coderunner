@@ -1,14 +1,18 @@
-import os
-import subprocess
-from flask import Flask, render_template, request, flash, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+import time
+import logging
+import sys
 from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request, flash, redirect, url_for
+import subprocess
+import os
+import docker
+<< << << < HEAD
+== == == =
+>>>>>> > temp
 
 
 # for debugging
-import sys
-import logging
-import time
 logging.basicConfig(level=logging.DEBUG)
 
 coderunner = Flask(__name__)
@@ -71,7 +75,6 @@ def upload():
     else:
         return render_template('upload.html')
 
-import docker
 # Comile classes and display result
 @coderunner.route('/result', methods=['GET'])
 def compileRun():
@@ -79,11 +82,20 @@ def compileRun():
 
     with open('coderunner/fileStorage/runner.cpp', 'wb') as file:
         file.write(files[-1].data)
+    # the cpp file is copied into a container
+    # client = docker.from_env()
 
     client = docker.from_env()
     images = client.images.list()
-    run_image = list(filter(lambda x : x  == 'sandbox' , images))
+    run_image = list(filter(lambda x: x == 'sandbox', images))
+    if len(run_image) == 0:
+        client.images.build(path='./coderunner', tag='sandbox')
+
+    start = time.time()
     output = subprocess.check_output(
-        ['sudo', 'docker', 'run', 'sandbox']).decode("utf-8")
+        ['sudo', 'docker', 'run', '--rm', 'sandbox', ]).decode("utf-8")
     end = time.time()
+
     return render_template('result.html', filename=files[-1].filename, filecontents=files[-1].data.decode('ascii'), runtime='%3.2f seconds' % (end - start), output=output)
+
+# TODO: display the results
