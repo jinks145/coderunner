@@ -8,16 +8,16 @@ services:
       - ./coderunner
     
     ports:
-      - 5000:80
+      - 5000:22
     container_name: website
     depends_on:
       - sandbox
     image: brad314/website
-    memory: 512
+    
   sandbox:
     build: ./coderunner
     
     container_name: sandbox
     image: brad314/sandbox
-    memory: 512
+    
       
