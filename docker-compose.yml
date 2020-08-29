@@ -4,11 +4,9 @@ services:
   website:
     build: ./ 
     
-    volumes: 
-      - ./coderunner
     
     ports:
-      - 5000:22
+      - 80:5000
     container_name: website
     depends_on:
       - sandbox
