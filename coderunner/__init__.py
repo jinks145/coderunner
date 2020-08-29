@@ -80,7 +80,7 @@ def compileRun():
     
     
     start = time.time()
-    output =subprocess.check_output(['docker-compose', 'run', 'sandbox']).decode("utf-8")
+    output =subprocess.check_output(['sudo', 'docker-compose', 'run', 'sandbox']).decode("utf-8")
     print(output)
     end = time.time()
     
