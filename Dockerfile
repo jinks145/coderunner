@@ -3,11 +3,18 @@ FROM python:3.8.5-alpine3.12
 RUN adduser -D coderunner
 #set working dir
 WORKDIR home/experiment
-#copies coderunner source code from the original working dir
+
+# install docker
 RUN apk add docker
+RUN adduser coderunner docker
+
+# install docker-compose 
 RUN apk add docker-compose
+
+#copies coderunner source code from the original working dir
 COPY coderunner coderunner
 COPY migrations migrations
+
 #install pipenv
 RUN pip install pipenv
 # install Pipfile and dependencies
@@ -26,5 +33,6 @@ USER coderunner
 
 
 
-EXPOSE 8080
+EXPOSE 5000
 ENTRYPOINT ["./boot.sh"]
+CMD ["/bin/sh"]

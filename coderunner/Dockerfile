@@ -1,4 +1,6 @@
 FROM alpine:latest
+RUN apk add docker
+RUN apk add docker-compose
 RUN mkdir src
 WORKDIR src
 COPY ./fileStorage src

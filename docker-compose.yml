@@ -12,7 +12,9 @@ services:
     
   sandbox:
     build: ./coderunner
-    
+    volumes:
+      - /coderunner/fileStorage
+      - /var/run/docker.sock:/var/run/docker.sock
     container_name: sandbox
     image: brad314/sandbox
     
