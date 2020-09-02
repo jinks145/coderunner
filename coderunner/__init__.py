@@ -7,9 +7,6 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 import subprocess
 import os
 import docker
-<< << << < HEAD
-== == == =
->>>>>> > temp
 
 
 # for debugging
