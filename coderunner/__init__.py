@@ -7,9 +7,6 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 import subprocess
 import os
 import docker
-<< << << < HEAD
-== == == =
->>>>>> > temp
 
 
 # for debugging
@@ -80,7 +77,7 @@ def upload():
 def compileRun():
     files = FileContents.query.all()
 
-    with open('coderunner/fileStorage/runner.cpp', 'wb') as file:
+    with open('./coderunner/fileStorage/runner.cpp', 'wb') as file:
         file.write(files[-1].data)
     # the cpp file is copied into a container
     # client = docker.from_env()
@@ -93,7 +90,7 @@ def compileRun():
 
     start = time.time()
     output = subprocess.check_output(
-        ['sudo', 'docker', 'run', '--rm', 'sandbox', ]).decode("utf-8")
+        ['sudo', 'docker', 'run',  '-p', '-v /var/run/docker.sock:/var/run/docker.sock', '--rm', 'sandbox']).decode("utf-8")
     end = time.time()
 
     return render_template('result.html', filename=files[-1].filename, filecontents=files[-1].data.decode('ascii'), runtime='%3.2f seconds' % (end - start), output=output)
