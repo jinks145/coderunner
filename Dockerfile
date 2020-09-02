@@ -1,9 +1,11 @@
-FROM python:3.8.5-slim-buster
+FROM python:3.8.5-alpine3.12
 
-RUN adduser -disabled-password coderunner
+RUN adduser -D coderunner
 #set working dir
 WORKDIR home/experiment
 #copies coderunner source code from the original working dir
+RUN apk add docker
+RUN apk add docker-compose
 COPY coderunner coderunner
 COPY migrations migrations
 #install pipenv
