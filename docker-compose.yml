@@ -3,6 +3,9 @@ version: '3'
 services:
   website:
     build: ./ 
+
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 80:5000
     container_name: website
@@ -14,7 +17,6 @@ services:
     build: ./coderunner
     volumes:
       - /coderunner/fileStorage
-      - /var/run/docker.sock:/var/run/docker.sock
     container_name: sandbox
     image: brad314/sandbox
     

@@ -6,6 +6,8 @@ WORKDIR home/experiment
 
 # install docker
 RUN apk add docker
+
+RUN addgroup coderunner docker
 RUN adduser coderunner docker
 
 # install docker-compose 
@@ -22,14 +24,14 @@ COPY Pipfile Pipfile
 COPY Pipfile.lock Pipfile.lock
 #run pipenv install to create a pipenv from the dependency
 RUN pipenv install --system
-COPY boot.sh ./
+COPY boot.sh docker-compose.yml ./
 
 RUN chmod +x boot.sh
 
 ENV FLASK_APP coderunner.py
 
 RUN chown -R coderunner:coderunner ./
-USER coderunner
+# USER coderunner
 
 
 
