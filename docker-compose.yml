@@ -23,9 +23,6 @@ services:
   sandbox:
     build: ./coderunner
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 
-      POSTGRES_DB: test
     volumes:
       - /coderunner/fileStorage
     container_name: sandbox
