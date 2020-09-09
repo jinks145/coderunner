@@ -3,21 +3,21 @@ version: '3'
 services:
   website:
     build: ./ 
-    
+
     volumes: 
-      - ./coderunner
-    
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - 5000:80
+      - 80:5000
     container_name: website
     depends_on:
       - sandbox
     image: brad314/website
-    memory: 512
+    
   sandbox:
     build: ./coderunner
-    
+    volumes:
+      - /coderunner/fileStorage
     container_name: sandbox
     image: brad314/sandbox
-    memory: 512
+    
       
