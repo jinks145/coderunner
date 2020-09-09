@@ -11,6 +11,7 @@ gunicorn = "*"
 flask-migrate = "*"
 flask-sqlalchemy = "*"
 docker = "*"
+gevent = "*"
 
 [requires]
 python_version = "3.8"
