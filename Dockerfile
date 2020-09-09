@@ -24,5 +24,5 @@ USER coderunner
 
 
 
-EXPOSE 5000
+EXPOSE 8080
 ENTRYPOINT ["./boot.sh"]
