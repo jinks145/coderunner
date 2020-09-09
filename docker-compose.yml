@@ -4,8 +4,15 @@ services:
   website:
     build: ./ 
 
+    depends_on:
+      - db
+
+    environment:
+      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://coderunner:app@db/app
+    
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
+
     ports:
       - 80:5000
     container_name: website
@@ -15,9 +22,27 @@ services:
     
   sandbox:
     build: ./coderunner
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 
+      POSTGRES_DB: test
     volumes:
       - /coderunner/fileStorage
     container_name: sandbox
     image: brad314/sandbox
-    
+  
+  db:
+    image: postgres:latest
+
+    environment:
+      POSTGRES_USER: brad
+      POSTGRES_PASSWORD: coderunner
+      POSTGRES_DB: app
+
+    restart: always
+    ports:
+      - 5405:5432
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
       
