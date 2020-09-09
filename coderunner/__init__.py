@@ -63,6 +63,11 @@ def main():
 def upload():
     if request.method == 'POST':
         file = request.files['inputFile']
+
+        if '.cpp' not in file.filename:
+            return render_template('500.html'), 500
+
+
         # converts the input to the record
         newFile = FileContents(filename=file.filename, data=file.read())
         db.session.add(newFile)
@@ -74,12 +79,12 @@ def upload():
 
 @coderunner.errorhandler(404)
 def not_found_error(error):
+    return render_template('404.html'), 404
     
-    pass
-
 @coderunner.errorhandler(500)
 def runtime_error(error):
-    pass
+    return render_template('500.html'), 500
+    
 
 # Comile classes and display result
 @coderunner.route('/result', methods=['GET'])
