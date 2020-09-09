@@ -72,6 +72,15 @@ def upload():
     else:
         return render_template('upload.html')
 
+@coderunner.errorhandler(404)
+def not_found_error(error):
+    
+    pass
+
+@coderunner.errorhandler(500)
+def runtime_error(error):
+    pass
+
 # Comile classes and display result
 @coderunner.route('/result', methods=['GET'])
 def compileRun():
