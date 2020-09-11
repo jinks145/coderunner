@@ -17,6 +17,7 @@ RUN apk add docker-compose
 COPY coderunner coderunner
 COPY migrations migrations
 
+
 #install pipenv
 RUN pip install pipenv
 # install Pipfile and dependencies

@@ -39,19 +39,7 @@ db = SQLAlchemy(coderunner)
 migrate = Migrate(coderunner, db)
 
 # Models
-
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-
-
-class FileContents(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    filename = db.Column(db.String(64), index=True)
-    data = db.Column(db.LargeBinary)
-
-
+from coderunner.models import User, FileContents
 # routes
 @coderunner.route('/')
 def main():
@@ -67,7 +55,6 @@ def upload():
         if '.cpp' not in file.filename:
             return render_template('500.html'), 500
 
-
         # converts the input to the record
         newFile = FileContents(filename=file.filename, data=file.read())
         db.session.add(newFile)
@@ -77,14 +64,16 @@ def upload():
     else:
         return render_template('upload.html')
 
+
 @coderunner.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
-    
+
+
 @coderunner.errorhandler(500)
 def runtime_error(error):
     return render_template('500.html'), 500
-    
+
 
 # Comile classes and display result
 @coderunner.route('/result', methods=['GET'])
@@ -98,7 +87,7 @@ def compileRun():
 
     start = time.time()
     output = subprocess.check_output(
-        ['docker-compose','run', '--rm' , 'sandbox']).decode("utf-8")
+        ['sudo', 'docker-compose', 'run', '--rm', 'sandbox']).decode("utf-8")
     end = time.time()
 
     return render_template('result.html', filename=files[-1].filename, filecontents=files[-1].data.decode('ascii'), runtime='%3.2f seconds' % (end - start), output=output)

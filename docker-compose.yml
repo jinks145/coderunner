@@ -12,17 +12,16 @@ services:
     
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
-
+      - /home/brad/coderunner/coderunner
+      - /home/brad/coderunner/migrations
     ports:
       - 80:5000
     container_name: website
-    depends_on:
-      - sandbox
     image: brad314/website
     
   sandbox:
     build: ./coderunner
-    environment:
+    
     volumes:
       - /coderunner/fileStorage
     container_name: sandbox
