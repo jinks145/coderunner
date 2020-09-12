@@ -1,3 +1,0 @@
-13.124.79.170#!/bin/bash
-flask db upgrade
-exec gunicorn --bind 0.0.00:80 --access-logfile - --error-logfile - coderunner:coderunner
