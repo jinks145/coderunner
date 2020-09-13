@@ -16,11 +16,15 @@
 - Version 1.0
 
 ## Capacity:
-    - Currently supports single-file cpp code
+
+- Currently supports single-file cpp code
 
 ## Future Goals:
-    - Convert the codebase for the web application into API and restructuring
-    - improve file submission logistics
-        1. securing file transmission protocol
-        2. Direct file-blob to compilation support
-    - add unit test functionality using pytest and string comparison
+- Convert the codebase for the web application into API and restructuring
+
+- improve file submission logistics
+    1. securing file transmission protocol
+    
+    2. Direct file-blob to compilation support
+    
+        - add unit test functionality using pytest and string comparison
