@@ -2,14 +2,15 @@
 - A simple, crude proof of concept for a cpp code runtime api using docker
 
 ## Structure
-    - Overview
+- Overview
         Simple MVC-based microservice app with server-side computation
     
-    - Current Implementation: used the following containers for structure
-        1. db: a postgresql container
-        2. sandbox: runtime enviornment for code execution
-        3. website: main front-end for clients
-
+- Current Implementation: used the following containers for structure
+    1. db: a postgresql container
+    
+    2. sandbox: runtime enviornment for code execution
+    
+    3. website: main front-end for clients
         ![application structure](./sandbox-diagram.jpg)
 ## Version
 - Version 1.0
