@@ -1,11 +1,24 @@
 # DG-SANDBOX
-- A simple, crude web page demonstration of a sandboxed cpp code runtime api using docker
+- A simple, crude proof of concept for a cpp code runtime api using docker
 
-## Version:
+## Structure
+    - Overview
+        Simple MVC-based microservice app with server-side computation
+    
+    - Current Implementation: used the following containers for structure
+        1. db: a postgresql container
+        2. sandbox: runtime enviornment for code execution
+        3. website: main front-end for clients
+
+## Version
 - Version 1.0
 
 ## Capacity:
     - Currently supports single-file cpp code
 
-## Future:
-    - Basis for an api server
+## Future Goals:
+    - Convert the codebase for the web application for API
+    - improve file submission logistics
+        1. securing file transmission protocol
+        2. Direct file-blob to compilation support
+    - add unit test functionality using pytest and string comparison
