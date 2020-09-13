@@ -10,6 +10,7 @@
         2. sandbox: runtime enviornment for code execution
         3. website: main front-end for clients
 
+        ![application structure](./sandbox-diagram.jpg)
 ## Version
 - Version 1.0
 
