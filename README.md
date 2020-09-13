@@ -1,5 +1,5 @@
-# Coderunner
-- A simple, crude web page demonstration of a sandboxed cpp code runtime using docker
+# dg Sandbo
+- A simple, crude web page demonstration of a sandboxed cpp code runtime API using docker
 
 ## Version:
 - Version 1.0
