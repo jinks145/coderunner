@@ -66,6 +66,7 @@ def upload():
     if request.method == 'POST':
         file = request.files['inputFile']
 
+        # check file type
         if '.cpp' not in file.filename:
             return render_template('500.html'), 500
 
