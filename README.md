@@ -1,5 +1,5 @@
 # DG-SANDBOX
-- A simple, crude web page demonstration of a sandboxed cpp code runtime using docker
+- A simple, crude web page demonstration of a sandboxed cpp code runtime api using docker
 
 ## Version:
 - Version 1.0
