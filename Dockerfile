@@ -5,6 +5,8 @@ RUN adduser -D coderunner
 WORKDIR home/experiment
 
 # install docker
+RUN apk add libseccomp
+RUN apk add iptables
 RUN apk add docker
 
 RUN addgroup coderunner docker
