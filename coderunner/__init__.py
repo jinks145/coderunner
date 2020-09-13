@@ -40,12 +40,12 @@ migrate = Migrate(coderunner, db)
 
 # Models
 
-
+# for user-info: to be drop later
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
 
-
+#store cpp file blobs
 class FileContents(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String(64), index=True)
@@ -53,12 +53,14 @@ class FileContents(db.Model):
 
 
 # routes
+
+#main page for code submission
 @coderunner.route('/')
 def main():
     coderunner.logger.info('Debug info: coderunner.logger.info')
     return render_template("index.html")
 
-
+# route for submission
 @coderunner.route('/upload', methods=['POST'])
 def upload():
     if request.method == 'POST':
@@ -77,6 +79,7 @@ def upload():
     else:
         return render_template('upload.html')
 
+#error handling, displays shiba image when something is not right
 @coderunner.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
@@ -103,4 +106,4 @@ def compileRun():
 
     return render_template('result.html', filename=files[-1].filename, filecontents=files[-1].data.decode('ascii'), runtime='%3.2f seconds' % (end - start), output=output)
 
-# TODO: display the results
+

@@ -1,6 +1,7 @@
 version: '3'
-
+#containers for my application
 services:
+  # the frontend based is from flask
   website:
     build: ./ 
 
@@ -9,17 +10,17 @@ services:
 
     environment:
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://coderunner:app@db/app
-    
+    #sets the docker socket to the server's socket to enable sibling container for the runtime container
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
-
+      #forwarding port to 80 in host
     ports:
       - 80:5000
     container_name: website
     depends_on:
       - sandbox
     image: brad314/website
-    
+  #cpp runtime container
   sandbox:
     build: ./coderunner
     environment:
@@ -27,16 +28,17 @@ services:
       - /coderunner/fileStorage
     container_name: sandbox
     image: brad314/sandbox
-  
+  #container config for the db that stores file blobs from the user
   db:
     image: postgres:latest
-
+    #set db configs
     environment:
       POSTGRES_USER: brad
       POSTGRES_PASSWORD: coderunner
       POSTGRES_DB: app
 
     restart: always
+    #db's container ports
     ports:
       - 5405:5432
     volumes:

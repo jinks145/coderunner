@@ -1,3 +1,4 @@
+# Docker for the sibling image
 FROM gcc:10.2.0
 RUN mkdir src
 WORKDIR src
